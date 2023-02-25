@@ -1,5 +1,5 @@
 name: appli_lite
-description: A new Flutter project.
+description: Appli, uma forma simplificada de acompanhamento de obra.
 publish_to: 'none'
 version: 0.1.0
 
@@ -17,3 +17,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+fonts:
+  - family: open-sans
+    fonts:
+      - asset: assets/fonts/OpenSans-VariableFont_wdth,wght.ttf
+        style: normal
