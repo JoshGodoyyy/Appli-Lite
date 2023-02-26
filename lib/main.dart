@@ -1,6 +1,7 @@
-import 'package:appli_lite/app/core/ui/theme/theme_config.dart';
-import 'package:appli_lite/pages/login_page.dart';
 import 'package:flutter/material.dart';
+
+import 'app/core/pages/login_page.dart';
+import 'app/core/ui/theme/theme_config.dart';
 
 void main() {
   runApp(const MainApp());

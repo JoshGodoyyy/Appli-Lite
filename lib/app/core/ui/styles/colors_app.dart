@@ -11,14 +11,10 @@ class ColorsApp {
   }
 
   Color get primary => const Color(0xff473e97);
-  
-  /* 
-   * light blue = Color(0xFF71b8ff);
-   * light orange = Color(0xFFffaa5b);
-   * orange = Color(0xFFff5606);
-   * pink = Color(0xFFe91e63);
-   * purple = Color(0xFF9ba0fc);
-   * deep blue = Color(0xff3366ff);
-   */
-
+  Color get lightBlue => const Color(0xff71b8ff);
+  Color get lightOrange => const Color(0xFFffaa5b);
+  Color get orange => const Color(0xFFff5606);
+  Color get pink => const Color(0xFFe91e63);
+  Color get purple => const Color(0xFF9ba0fc);
+  Color get deepBlue => const Color(0xff3366ff);
 }

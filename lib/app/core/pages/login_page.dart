@@ -1,3 +1,4 @@
+import 'package:appli_lite/app/core/pages/home_page.dart';
 import 'package:appli_lite/app/core/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -75,7 +76,13 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(24),
                     backgroundColor: Colors.white,
@@ -125,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.white,
             ),
             hintText: text,
-            hintStyle: const TextStyle(color: Colors.white),
+            hintStyle: const TextStyle(color: Colors.white54),
           ),
         ),
       ),
