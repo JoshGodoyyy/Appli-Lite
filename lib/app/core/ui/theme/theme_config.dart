@@ -5,7 +5,8 @@ class ThemeConfig {
   ThemeConfig._();
 
   static final theme = ThemeData(
-    scaffoldBackgroundColor: const Color(0xFFe2e2e2),
+    scaffoldBackgroundColor: const Color(0xFFf6f7f9),
     primaryColor: ColorsApp.instance.primary,
+    useMaterial3: true,
   );
 }

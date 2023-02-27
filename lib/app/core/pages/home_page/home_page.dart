@@ -1,9 +1,12 @@
-import 'package:appli_lite/app/core/pages/login_page.dart';
+import 'package:appli_lite/app/core/pages/login_page/login_page.dart';
+import 'package:appli_lite/app/core/pages/tools_page/tools_page.dart';
 import 'package:appli_lite/app/core/ui/styles/colors_app.dart';
 import 'package:appli_lite/app/core/ui/styles/text_styles.dart';
-import 'package:appli_lite/app/core/ui/widgets/horizontal_calendar.dart';
-import 'package:appli_lite/app/core/ui/widgets/main_button.dart';
+import 'package:appli_lite/app/core/pages/home_page/widgets/horizontal_calendar.dart';
+import 'package:appli_lite/app/core/pages/home_page/widgets/main_button.dart';
 import 'package:flutter/material.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         title: Text(
           'Appli',
-          style: context.textStyles.textRegular,
+          style: context.textStyles.textRegular.copyWith(color: Colors.white),
         ),
         centerTitle: true,
         actions: [
@@ -33,7 +36,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            icon: const Icon(Icons.logout),
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
@@ -42,16 +48,26 @@ class _HomePageState extends State<HomePage> {
           Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-                color: ColorsApp.instance.primary,
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10))),
+              color: ColorsApp.instance.primary,
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      //! Perfil de Usuário
+                      showTopSnackBar(
+                        Overlay.of(context),
+                        const CustomSnackBar.info(
+                          message: "Em desenvolvimento",
+                        ),
+                      );
+                    },
                     icon: const Icon(
                       Icons.person,
                       color: Colors.white,
@@ -82,14 +98,28 @@ class _HomePageState extends State<HomePage> {
                         MainButton(
                           title: 'Ferramentas',
                           subtitle: 15,
-                          icon: Icons.hardware_rounded,
+                          icon: Icons.home_repair_service,
                           color: ColorsApp.instance.deepBlue,
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const ToolsPage(),
+                            ),
+                          ),
                         ),
                         MainButton(
                           title: 'Equipamentos',
                           subtitle: 10,
                           icon: Icons.widgets_rounded,
                           color: ColorsApp.instance.orange,
+                          onTap: () {
+                            //! Tela de equipamentos
+                            showTopSnackBar(
+                              Overlay.of(context),
+                              const CustomSnackBar.info(
+                                message: "Em desenvolvimento",
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -100,6 +130,15 @@ class _HomePageState extends State<HomePage> {
                           subtitle: 8,
                           icon: Icons.construction,
                           color: ColorsApp.instance.pink,
+                          onTap: () {
+                            //! Lista de obras
+                            showTopSnackBar(
+                              Overlay.of(context),
+                              const CustomSnackBar.info(
+                                message: "Em desenvolvimento",
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

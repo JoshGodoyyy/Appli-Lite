@@ -6,6 +6,7 @@ class MainButton extends StatelessWidget {
   final int subtitle;
   final IconData icon;
   final Color color;
+  final Function() onTap;
 
   const MainButton({
     Key? key,
@@ -13,15 +14,16 @@ class MainButton extends StatelessWidget {
     required this.icon,
     required this.color,
     required this.subtitle,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(6.0),
         child: InkWell(
-          onTap: (){},
+          onTap: () => onTap(),
           borderRadius: BorderRadius.circular(10),
           child: Container(
             decoration: const BoxDecoration(
@@ -37,9 +39,9 @@ class MainButton extends StatelessWidget {
                     offset: Offset(5, 5))
               ],
             ),
-            height: MediaQuery.of(context).size.width / 2 - 24,
+            height: MediaQuery.of(context).size.width / 2 - 20,
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -54,14 +56,16 @@ class MainButton extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyles.instance.textRegular.copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87,
+                    ),
                   ),
                   Text(
                     'Total: $subtitle',
-                    style: TextStyles.instance.textRegular
-                        .copyWith(color: Colors.black54),
+                    style: TextStyles.instance.textRegular.copyWith(
+                      color: Colors.black54,
+                    ),
                   )
                 ],
               ),
