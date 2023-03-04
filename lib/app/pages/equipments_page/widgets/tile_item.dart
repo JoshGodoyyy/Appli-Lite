@@ -5,12 +5,14 @@ enum Items { editar, remover, transferir }
 
 class TileItem extends StatefulWidget {
   final String title;
-  final int amount;
+  final String details;
+  final int id;
 
   const TileItem({
     Key? key,
     required this.title,
-    required this.amount,
+    required this.details,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -68,9 +70,13 @@ class _TileItemState extends State<TileItem> {
                       fontSize: 20,
                     ),
                   ),
-                  const SizedBox(height: 10),
                   Text(
-                    'Quantidade: ${widget.amount}',
+                    widget.details,
+                    style: TextStyles.instance.textRegular
+                        .copyWith(fontSize: 16, color: Colors.black54),
+                  ),
+                  Text(
+                    'Patrimônio nº: ${widget.id}',
                     style: TextStyles.instance.textRegular
                         .copyWith(fontSize: 16, color: Colors.black54),
                   )

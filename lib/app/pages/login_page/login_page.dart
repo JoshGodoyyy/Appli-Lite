@@ -1,9 +1,11 @@
-import 'package:appli_lite/app/core/pages/home_page/home_page.dart';
-import 'package:appli_lite/app/core/pages/login_page/widgets/forgot_password.dart';
-import 'package:appli_lite/app/core/pages/login_page/widgets/login_button.dart';
-import 'package:appli_lite/app/core/pages/login_page/widgets/text_field.dart';
+import 'package:appli_lite/app/pages/forgot_password_page/forgot_password_page.dart';
+import 'package:appli_lite/app/pages/home_page/home_page.dart';
 import 'package:appli_lite/app/core/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/ui/widgets/forgot_password.dart';
+import '../../core/ui/widgets/text_field.dart';
+import 'widgets/login_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -30,14 +32,15 @@ class _LoginPageState extends State<LoginPage> {
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xff5248b0),
-                Color(0xff473e97),
-                Color(0xff6357d6),
-                Color(0xff6357d6),
-              ]),
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xff5248b0),
+              Color(0xff473e97),
+              Color(0xff6357d6),
+              Color(0xff6357d6),
+            ],
+          ),
         ),
         child: Form(
           child: Padding(
@@ -67,7 +70,13 @@ class _LoginPageState extends State<LoginPage> {
                   icon: Icons.password,
                   hintText: 'Senha',
                 ),
-                ForgotPassword(onTap: () {}),
+                ForgotPassword(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const ForgotPasswordPage(),
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 20),
                 LoginButton(
                   onTap: () => Navigator.of(context).pushReplacement(
@@ -75,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                       builder: (context) => const HomePage(),
                     ),
                   ),
+                  label: 'Entrar',
                 ),
               ],
             ),

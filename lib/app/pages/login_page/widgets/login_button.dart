@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 
 class LoginButton extends StatelessWidget {
   final Function() onTap;
+  final String label;
+
   const LoginButton({
     Key? key,
     required this.onTap,
+    required this.label,
   }) : super(key: key);
 
   @override
@@ -22,7 +25,7 @@ class LoginButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          'Entrar',
+          label,
           style: context.textStyles.textRegular
               .copyWith(fontSize: 16, color: Colors.black),
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../ui/styles/text_styles.dart';
+import '../../../core/ui/styles/text_styles.dart';
 
 class TextFieldTools extends StatelessWidget {
   final TextEditingController controller;

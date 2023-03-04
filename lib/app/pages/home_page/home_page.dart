@@ -1,9 +1,11 @@
-import 'package:appli_lite/app/core/pages/login_page/login_page.dart';
-import 'package:appli_lite/app/core/pages/tools_page/tools_page.dart';
+import 'package:appli_lite/app/pages/equipments_page/equipments_page.dart';
+import 'package:appli_lite/app/pages/login_page/login_page.dart';
+import 'package:appli_lite/app/pages/tools_page/tools_page.dart';
 import 'package:appli_lite/app/core/ui/styles/colors_app.dart';
 import 'package:appli_lite/app/core/ui/styles/text_styles.dart';
-import 'package:appli_lite/app/core/pages/home_page/widgets/horizontal_calendar.dart';
-import 'package:appli_lite/app/core/pages/home_page/widgets/main_button.dart';
+import 'package:appli_lite/app/pages/home_page/widgets/horizontal_calendar.dart';
+import 'package:appli_lite/app/pages/home_page/widgets/main_button.dart';
+import 'package:appli_lite/app/pages/works_page/works_page.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -111,15 +113,11 @@ class _HomePageState extends State<HomePage> {
                           subtitle: 10,
                           icon: Icons.widgets_rounded,
                           color: ColorsApp.instance.orange,
-                          onTap: () {
-                            //! Tela de equipamentos
-                            showTopSnackBar(
-                              Overlay.of(context),
-                              const CustomSnackBar.info(
-                                message: "Em desenvolvimento",
-                              ),
-                            );
-                          },
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const EquipmentsPage(),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -130,15 +128,11 @@ class _HomePageState extends State<HomePage> {
                           subtitle: 8,
                           icon: Icons.construction,
                           color: ColorsApp.instance.pink,
-                          onTap: () {
-                            //! Lista de obras
-                            showTopSnackBar(
-                              Overlay.of(context),
-                              const CustomSnackBar.info(
-                                message: "Em desenvolvimento",
-                              ),
-                            );
-                          },
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const WorksPage(),
+                            ),
+                          ),
                         ),
                       ],
                     ),

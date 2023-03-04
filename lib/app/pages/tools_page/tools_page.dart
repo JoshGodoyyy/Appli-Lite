@@ -1,5 +1,5 @@
-import 'package:appli_lite/app/core/pages/tools_page/widgets/text_field_tools.dart';
-import 'package:appli_lite/app/core/pages/tools_page/widgets/tile_item.dart';
+import 'package:appli_lite/app/pages/tools_page/widgets/text_field_tools.dart';
+import 'package:appli_lite/app/pages/tools_page/widgets/tile_item.dart';
 import 'package:appli_lite/app/core/ui/styles/colors_app.dart';
 import 'package:appli_lite/app/core/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +32,7 @@ class _ToolsPageState extends State<ToolsPage> {
         children: const [
           TileItem(
             title: 'Chave de fenda',
+            details: 'Chave grande',
             amount: 10,
           ),
         ],
