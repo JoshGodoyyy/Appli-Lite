@@ -2,8 +2,6 @@ import 'package:appli_lite/app/pages/forgot_password_page/widgets/custom_button.
 import 'package:appli_lite/app/core/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/ui/widgets/forgot_password.dart';
-import '../login_page/widgets/login_button.dart';
 import '../../core/ui/widgets/text_field.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -48,10 +46,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: Text(
-                    'Esqueceu a senha?',
-                    style: context.textStyles.textTitle,
+                Text(
+                  'Appli',
+                  style: context.textStyles.textRegular.copyWith(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Esqueceu a senha?',
+                  style: TextStyles.instance.textTitle.copyWith(
+                    fontSize: 32,
                   ),
                 ),
                 const SizedBox(height: 80),

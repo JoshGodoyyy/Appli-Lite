@@ -1,11 +1,11 @@
 import 'package:appli_lite/app/pages/equipments_page/equipments_page.dart';
-import 'package:appli_lite/app/pages/login_page/login_page.dart';
 import 'package:appli_lite/app/pages/tools_page/tools_page.dart';
 import 'package:appli_lite/app/core/ui/styles/colors_app.dart';
 import 'package:appli_lite/app/core/ui/styles/text_styles.dart';
 import 'package:appli_lite/app/pages/home_page/widgets/horizontal_calendar.dart';
 import 'package:appli_lite/app/pages/home_page/widgets/main_button.dart';
 import 'package:appli_lite/app/pages/works_page/works_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -31,13 +31,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => const LoginPage(),
-                ),
-              );
-            },
+            onPressed: () => FirebaseAuth.instance.signOut(),
             icon: const Icon(
               Icons.logout,
               color: Colors.white,
