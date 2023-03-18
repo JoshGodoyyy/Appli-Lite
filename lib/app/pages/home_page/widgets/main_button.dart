@@ -33,30 +33,31 @@ class MainButton extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 5,
-                    spreadRadius: 5,
-                    offset: Offset(5, 5))
+                  color: Colors.black12,
+                  blurRadius: 5,
+                  spreadRadius: 5,
+                  offset: Offset(5, 5),
+                ),
               ],
             ),
-            height: MediaQuery.of(context).size.width / 2 - 20,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 10),
                   Center(
                     child: Icon(
                       icon,
-                      size: 74,
+                      size: 64,
                       color: color,
                     ),
                   ),
-                  const Spacer(),
+                  const SizedBox(height: 10),
                   Text(
                     title,
                     style: TextStyles.instance.textRegular.copyWith(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Colors.black87,
                     ),
@@ -66,7 +67,7 @@ class MainButton extends StatelessWidget {
                     style: TextStyles.instance.textRegular.copyWith(
                       color: Colors.black54,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

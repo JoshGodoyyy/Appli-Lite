@@ -1,10 +1,12 @@
 import 'package:appli_lite/app/pages/tools_page/widgets/text_field_tools.dart';
 import 'package:appli_lite/app/pages/tools_page/widgets/tile_item.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:appli_lite/app/core/ui/styles/colors_app.dart';
 import 'package:appli_lite/app/core/ui/styles/text_styles.dart';
+import 'package:appli_lite/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class ToolsPage extends StatefulWidget {
   const ToolsPage({Key? key}) : super(key: key);
@@ -14,6 +16,19 @@ class ToolsPage extends StatefulWidget {
 }
 
 class _ToolsPageState extends State<ToolsPage> {
+  final databaseReference = FirebaseDatabase.instanceFor(
+    app: Firebase.app(),
+    databaseURL: 'https://appli-lite-default-rtdb.firebaseio.com/',
+  ).ref();
+
+  Query data = FirebaseDatabase.instance.ref().child('tools');
+
+  getData() async {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,14 +43,37 @@ class _ToolsPageState extends State<ToolsPage> {
         centerTitle: true,
         backgroundColor: ColorsApp.instance.primary,
       ),
-      body: ListView(
-        children: const [
-          TileItem(
-            title: 'Chave de fenda',
-            details: 'Chave grande',
-            amount: 10,
-          ),
-        ],
+      body: FutureBuilder(
+        future: getData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                'Ocorreu um erro',
+                style: TextStyles.instance.textRegular,
+              ),
+            );
+          }
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return FirebaseAnimatedList(
+              query: data,
+              itemBuilder: (
+                context,
+                snapshot,
+                animation,
+                index,
+              ) {
+                Map tool = snapshot.value as Map;
+                tool['key'] = snapshot.key;
+                return TileItem(data: tool);
+              },
+            );
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -94,12 +132,14 @@ class _ToolsPageState extends State<ToolsPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    showTopSnackBar(
-                      Overlay.of(context),
-                      const CustomSnackBar.info(
-                        message: "Em desenvolvimento",
-                      ),
-                    );
+                    databaseReference
+                        .child('tools')
+                        .child(itemController.text)
+                        .set({
+                      'title': itemController.text,
+                      'details': detailsController.text,
+                      'amount': amountController.text,
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xffeaddff),

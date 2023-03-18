@@ -4,16 +4,9 @@ import 'package:flutter/material.dart';
 enum Items { editar, remover, transferir }
 
 class TileItem extends StatefulWidget {
-  final String title;
-  final String details;
-  final int amount;
+  final Map data;
 
-  const TileItem({
-    Key? key,
-    required this.title,
-    required this.details,
-    required this.amount,
-  }) : super(key: key);
+  const TileItem({Key? key, required this.data}) : super(key: key);
 
   @override
   State<TileItem> createState() => _TileItemState();
@@ -65,41 +58,41 @@ class _TileItemState extends State<TileItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.title,
+                    widget.data['title'],
                     style: TextStyles.instance.textRegular.copyWith(
                       fontSize: 20,
                     ),
                   ),
                   Text(
-                    widget.details,
+                    widget.data['details'],
                     style: TextStyles.instance.textRegular
                         .copyWith(fontSize: 16, color: Colors.black54),
                   ),
                   Text(
-                    'Quantidade: ${widget.amount}',
+                    'Quantidade: ${widget.data['amount']}',
                     style: TextStyles.instance.textRegular
                         .copyWith(fontSize: 16, color: Colors.black54),
                   )
                 ],
               ),
-              const Spacer(),
-              PopupMenuButton<Items>(
-                initialValue: itemSelecionado,
-                itemBuilder: (context) => <PopupMenuEntry<Items>>[
-                  const PopupMenuItem<Items>(
-                    value: Items.editar,
-                    child: Text('Editar'),
-                  ),
-                  const PopupMenuItem<Items>(
-                    value: Items.remover,
-                    child: Text('Remover'),
-                  ),
-                  const PopupMenuItem<Items>(
-                    value: Items.transferir,
-                    child: Text('Transferir'),
-                  ),
-                ],
-              ),
+              // const Spacer(),
+              // PopupMenuButton<Items>(
+              //   initialValue: itemSelecionado,
+              //   itemBuilder: (context) => <PopupMenuEntry<Items>>[
+              //     const PopupMenuItem<Items>(
+              //       value: Items.editar,
+              //       child: Text('Editar'),
+              //     ),
+              //     const PopupMenuItem<Items>(
+              //       value: Items.remover,
+              //       child: Text('Remover'),
+              //     ),
+              //     const PopupMenuItem<Items>(
+              //       value: Items.transferir,
+              //       child: Text('Transferir'),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),
