@@ -4,15 +4,11 @@ import 'package:flutter/material.dart';
 enum Items { editar, remover, transferir }
 
 class TileItem extends StatefulWidget {
-  final String title;
-  final String details;
-  final int id;
+  final Map data;
 
   const TileItem({
     Key? key,
-    required this.title,
-    required this.details,
-    required this.id,
+    required this.data,
   }) : super(key: key);
 
   @override
@@ -65,18 +61,18 @@ class _TileItemState extends State<TileItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.title,
+                    widget.data['title'],
                     style: TextStyles.instance.textRegular.copyWith(
                       fontSize: 20,
                     ),
                   ),
                   Text(
-                    widget.details,
+                    widget.data['details'],
                     style: TextStyles.instance.textRegular
                         .copyWith(fontSize: 16, color: Colors.black54),
                   ),
                   Text(
-                    'Patrimônio nº: ${widget.id}',
+                    'Patrimônio nº: ${widget.data['id']}',
                     style: TextStyles.instance.textRegular
                         .copyWith(fontSize: 16, color: Colors.black54),
                   )
