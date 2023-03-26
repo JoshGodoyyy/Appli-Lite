@@ -1,4 +1,5 @@
 import 'package:appli_lite/app/core/ui/styles/text_styles.dart';
+import 'package:appli_lite/app/pages/edit_item_page/edit_item_page.dart';
 import 'package:flutter/material.dart';
 
 enum Items { editar, remover, transferir }
@@ -25,78 +26,63 @@ class _TileItemState extends State<TileItem> {
         horizontal: 16.0,
         vertical: 8,
       ),
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(
+      child: Material(
+        elevation: 5,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(10),
+        ),
+        child: InkWell(
+          borderRadius: const BorderRadius.all(
             Radius.circular(10),
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 5.0,
-              spreadRadius: 0.7,
-              offset: Offset(5, 5),
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              const Icon(
-                Icons.handyman_rounded,
-                color: Colors.black54,
-                size: 36,
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) =>
+                    EditItemPage(data: widget.data, type: 'equipment'),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Container(
-                  height: 36,
-                  width: 1,
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.handyman_rounded,
                   color: Colors.black54,
+                  size: 36,
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.data['title'],
-                    style: TextStyles.instance.textRegular.copyWith(
-                      fontSize: 20,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Container(
+                    height: 36,
+                    width: 1,
+                    color: Colors.black54,
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.data['title'],
+                      style: TextStyles.instance.textRegular.copyWith(
+                        fontSize: 20,
+                      ),
                     ),
-                  ),
-                  Text(
-                    widget.data['details'],
-                    style: TextStyles.instance.textRegular
-                        .copyWith(fontSize: 16, color: Colors.black54),
-                  ),
-                  Text(
-                    'Patrimônio nº: ${widget.data['id']}',
-                    style: TextStyles.instance.textRegular
-                        .copyWith(fontSize: 16, color: Colors.black54),
-                  )
-                ],
-              ),
-              const Spacer(),
-              PopupMenuButton<Items>(
-                initialValue: itemSelecionado,
-                itemBuilder: (context) => <PopupMenuEntry<Items>>[
-                  const PopupMenuItem<Items>(
-                    value: Items.editar,
-                    child: Text('Editar'),
-                  ),
-                  const PopupMenuItem<Items>(
-                    value: Items.remover,
-                    child: Text('Remover'),
-                  ),
-                  const PopupMenuItem<Items>(
-                    value: Items.transferir,
-                    child: Text('Transferir'),
-                  ),
-                ],
-              ),
-            ],
+                    Text(
+                      widget.data['details'],
+                      style: TextStyles.instance.textRegular
+                          .copyWith(fontSize: 16, color: Colors.black54),
+                    ),
+                    Text(
+                      'Patrimônio nº: ${widget.data['id']}',
+                      style: TextStyles.instance.textRegular
+                          .copyWith(fontSize: 16, color: Colors.black54),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
